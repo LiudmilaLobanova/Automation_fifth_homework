@@ -32,10 +32,33 @@ public class DataGenerator {
         return name;
     }
 
+    public static String generateWrongCity(String locale) {
+        var faker = new Faker(new Locale(locale));
+        String wrcity = faker.name().fullName();
+        return wrcity;
+    }
+
     public static String generatePhone(String locale) {
         var faker = new Faker(new Locale(locale));
         String phone = faker.numerify("+79#########");
         return phone;
+    }
+
+    public static String generateShortPhone(String locale) {
+        var faker = new Faker(new Locale(locale));
+        String phone = faker.numerify("+79########");
+        return phone;
+    }
+
+    public static String generateLongPhone(String locale) {
+        var faker = new Faker(new Locale(locale));
+        String phone = faker.numerify("+79##########");
+        return phone;
+    }
+
+    public static String generateSpecialCharacter() {
+        String [] spchar = {"!", "@", "#", "%", "^", "&", "*", "(", ")", "/", ":",";"};
+        return spchar[new Random().nextInt(spchar.length)];
     }
 
     @Value
