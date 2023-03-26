@@ -22,7 +22,7 @@ public class DataGenerator {
     }
 
     public static String generateCity() {
-        String [] cities = {"Москва", "Санкт-Петербург", "Севастополь", "Новосибирск", "Омск", "Ростов-на-Дону", "Саратов", "Смоленск", "Тамбов", "Тверь"};
+        String[] cities = {"Москва", "Санкт-Петербург", "Севастополь", "Новосибирск", "Омск", "Ростов-на-Дону", "Саратов", "Смоленск", "Тамбов", "Тверь"};
         return cities[new Random().nextInt(cities.length)];
     }
 
@@ -57,7 +57,7 @@ public class DataGenerator {
     }
 
     public static String generateSpecialCharacter() {
-        String [] spchar = {"!", "@", "#", "%", "^", "&", "*", "(", ")", "/", ":",";"};
+        String[] spchar = {"!", "@", "#", "%", "^", "&", "*", "(", ")", "/", ":", ";"};
         return spchar[new Random().nextInt(spchar.length)];
     }
 

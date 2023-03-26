@@ -1,4 +1,5 @@
 package ru.netology.delivery.test;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
@@ -6,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import ru.netology.delivery.test.DataGenerator;
+
 
 import java.util.Random;
 
@@ -17,6 +18,7 @@ import static com.codeborne.selenide.Selenide.*;
 class DeliveryTest {
 
     private static Faker faker;
+
     @BeforeEach
     void setup() {
         open("http://localhost:9999");
@@ -38,6 +40,7 @@ class DeliveryTest {
         $x("//*[contains(text(), 'Успешно')]").should(Condition.appear);
         $(".notification__content").shouldHave(text("Встреча успешно запланирована на " + DataGenerator.generateDate(3))).shouldBe(Condition.visible);
     }
+
     @Test
     @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {
@@ -47,9 +50,10 @@ class DeliveryTest {
         var daysToAddForSecondMeeting = 7;
         var secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
         $("[placeholder='Город']").setValue(validUser.getCity());
-        $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT,Keys.HOME), Keys.DELETE);
+        $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         $("[placeholder='Дата встречи']").setValue(firstMeetingDate);
-        $("[name='name']").setValue(validUser.getName());;
+        $("[name='name']").setValue(validUser.getName());
+        ;
         $("[name='phone']").setValue(validUser.getPhone());
         $("[class='checkbox__box']").click();
         $("[class='button__text']").click();
@@ -63,6 +67,7 @@ class DeliveryTest {
         $x("//div[contains(text(), 'Перепланировать')]").click();
         $x("//div[contains(text(), 'Встреча успешно')]").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate)).shouldBe(visible);
     }
+
     @Test
     @DisplayName("Should not be successful because few days to delivery")
     void shouldNotBeSuccessLessTimeToDelivery() {
@@ -172,6 +177,7 @@ class DeliveryTest {
         $x("//*[contains(text(), 'Запланировать')]").click();
         $("[data-test-id=name].input_invalid").should(Condition.appear);
     }
+
     @Test
     @DisplayName("Should not be successful because phone number is too short")
     void shouldNotBeSuccessWrongShortPhone() {
